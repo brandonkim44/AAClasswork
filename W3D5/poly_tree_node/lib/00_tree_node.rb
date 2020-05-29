@@ -1,3 +1,4 @@
+require "byebug"
 class PolyTreeNode
     attr_reader :value, :parent, :children
 
@@ -35,15 +36,29 @@ class PolyTreeNode
     end
     
     def inspect
-        "<#PolyTreeNode:#{self.object_id}"
+        "PolyTreeNode - value: #{value} - parent: #{self.parent} - children: #{self.children}\n"
     end
+
+
+    def dfs(target) #self = 4
+        return self if self.value == target
+        # return nil if self.children.empty?
+
+        self.children.each do |child_node|  # 4.children.each do |child_node|
+            if !self.children.empty?
+                child_node.dfs(target) # => nil
+            end
+        end
+        nil
+    end
+
+
+    
 end
 
+    #         1
+    #      /     \
+    #     2       3
+    #   /  \     /  \
+    #  4   5    6    7 
 
-
-
-class Searchable
-    def dfs
-        
-    end
-end
