@@ -96,7 +96,7 @@ end
 
 describe 'Searchable' do
   let(:nodes) { ('a'..'g').map { |value| PolyTreeNode.new(value) } }
-
+  #nodes = [<Polytreenode value of a>, <poly b.> etc.]
   before do
     parent_index = 0
     nodes.each_with_index do |child, index|
