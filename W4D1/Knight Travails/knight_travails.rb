@@ -1,117 +1,71 @@
+require_relative '00_tree_node'
+# require "byebug"
 class KnightPathFinder
+    attr_accessor :considered_positions
+    attr_accessor :root_node
+
+    POSSIBLE_MOVES = [
+        [1, 2],
+        [-1, 2],
+        [1, -2],
+        [-1, -2],
+        [-2, -1],
+        [-2, 1],
+        [2, -1],
+        [2, 1]
+    ]
     
+    def self.valid_moves(pos) #min row = 0 , min col = 0, max row = 7, max col = 7
+        valid_moves = []
+        row, col = pos
+        POSSIBLE_MOVES.each do |move|
+            new_row, new_col = move
+            if ((row + new_row) >= 0 && (row + new_row) <= 7) && ((col + new_col) >= 0 && (col + new_col) <= 7)
+                valid_moves << [row + new_row, col + new_col]
+            end
+        end
+        valid_moves
+    end
+    
+    def initialize(start_pos)
+        self.root_node = PolyTreeNode.new(start_pos)
+        @considered_positions = [start_pos]
+    end
+
+    def new_move_positions(pos) #all possible valid and nonconsidered moves
+        pos_positions = KnightPathFinder.valid_moves(pos).reject { |valid_pos| @considered_positions.include?(valid_pos) }
+        @considered_positions.concat(pos_positions)
+        pos_positions
+    end
+
+    def build_move_tree
+        moves = [self.root_node]
+        
+        until moves.empty?
+            current_node = moves.shift
+            new_move_positions(current_node.value).each do |next_pos|
+                next_node = PolyTreeNode.new(next_pos)
+                current_node.add_child(next_node)
+                # moves << next_node
+            end
+            moves += current_node.children
+        end
+    end
+
+    def find_path(end_pos)
+        # debugger
+        end_node = self.root_node.dfs(end_pos)
+        trace_back_path(end_node)
+    end
+
+    def trace_back_path(end_node)
+        path = [end_node.value]
+        parents_node = end_node.parent
+
+        until parents_node.nil?
+            path.unshift(parents_node.value)
+            parents_node = parents_node.parent
+        end
+        path
+    end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# module Searchable
-#   # I wrote this as a mixin in case I wanted to later write another
-#   # TreeNode class (e.g., BinaryTreeNode). All I need is `#children` and
-#   # `#value` for `Searchable` to work.
-
-#   def dfs(target = nil, &prc)
-#     raise "Need a proc or target" if [target, prc].none?
-#     prc ||= Proc.new { |node| node.value == target }
-
-#     return self if prc.call(self)
-
-#     children.each do |child|
-#       result = child.dfs(&prc)
-#       return result unless result.nil?
-#     end
-
-#     nil
-#   end
-
-#   def bfs(target = nil, &prc)
-#     raise "Need a proc or target" if [target, prc].none?
-#     prc ||= Proc.new { |node| node.value == target }
-
-#     nodes = [self]
-#     until nodes.empty?
-#       node = nodes.shift
-
-#       return node if prc.call(node)
-#       nodes.concat(node.children)
-#     end
-
-#     nil
-#   end
-
-#   def count
-#     1 + children.map(&:count).inject(:+)
-#   end
-# end
-
-# class PolyTreeNode
-#   include Searchable
-
-#   attr_accessor :value
-#   attr_reader :parent
-
-#   def initialize(value = nil)
-#     @value, @parent, @children = value, nil, []
-#   end
-
-#   def children
-#     # We dup to avoid someone inadvertently trying to modify our
-#     # children directly through the children array. Note that
-#     # `parent=` works hard to make sure children/parent always match
-#     # up. We don't trust our users to do this.
-#     @children.dup
-#   end
-
-#   def parent=(parent)
-#     return if self.parent == parent
-
-#     # First, detach from current parent.
-#     if self.parent
-#       self.parent._children.delete(self)
-#     end
-
-#     # No new parent to add this to.
-#     @parent = parent
-#     self.parent._children << self unless self.parent.nil?
-
-#     self
-#   end
-
-#   def add_child(child)
-#     # Just reset the child's parent to us!
-#     child.parent = self
-#   end
-
-#   def remove_child(child)
-#     # Thanks for doing all the work, `parent=`!
-#     if child && !self.children.include?(child)
-#       raise "Tried to remove node that isn't a child"
-#     end
-
-#     child.parent = nil
-#   end
-
-#   protected
-  
-#   # Protected method to give a node direct access to another node's
-#   # children.
-#   def _children
-#     @children
-#   end
-# end

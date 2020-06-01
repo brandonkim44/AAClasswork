@@ -59,7 +59,7 @@ class PolyTreeNode
     # First, detach from current parent.
     if self.parent
       self.parent._children.delete(self)
-    endi
+    end
 
     # No new parent to add this to.
     @parent = parent
