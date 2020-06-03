@@ -24,6 +24,7 @@ class Board
     def move_piece(color, start_pos, end_pos)
         raise "no piece at selected position" if self[start_pos].empty?
         raise "invalid move" unless self[end_pos].empty?
+
     end
     
     private
