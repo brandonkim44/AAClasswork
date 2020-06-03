@@ -1,8 +1,14 @@
 class Piece
+    
     def initialize(color, board, pos)
-        @board:
-        @pos
+        @color = color
+        @board = board
+        @pos = pos
     end
 
-    def 
+    def moves
+        
+    end
+
+    
 end
