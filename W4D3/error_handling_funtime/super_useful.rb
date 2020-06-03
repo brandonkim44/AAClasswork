@@ -1,6 +1,14 @@
 # PHASE 2
 def convert_to_int(str)
-  Integer(str)
+  begin
+    num = Integer(str)
+  rescue ArgumentError => e
+    puts "'#{str}' is an #{e.message}"
+  ensure
+    num = nil if !num
+  end
+  
+  num
 end
 
 # PHASE 3
@@ -10,8 +18,8 @@ def reaction(maybe_fruit)
   if FRUITS.include? maybe_fruit
     puts "OMG, thanks so much for the #{maybe_fruit}!"
   else 
-    raise StandardError 
-  end 
+    raise StandardError unless maybe_fruit == "coffee"
+  end
 end
 
 def feed_me_a_fruit
@@ -19,8 +27,13 @@ def feed_me_a_fruit
 
   puts "Feed me a fruit! (Enter the name of a fruit:)"
   maybe_fruit = gets.chomp
-  reaction(maybe_fruit) 
-end  
+  begin
+    reaction(maybe_fruit)
+  rescue 
+    puts "Wrong fruit! Try again, feed me coffee!"
+    feed_me_a_fruit
+  end
+end
 
 # PHASE 4
 class BestFriend
