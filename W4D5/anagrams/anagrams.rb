@@ -3,7 +3,7 @@
 # For example:
 # anagram?("gizmo", "sally")    #=> false
 # anagram?("elvis", "lives")    #=> true
-
+require "byebug"
 
 # Phase I:
 # Write a method #first_anagram? that will generate and store all the possible anagrams of the first string. 
@@ -40,23 +40,57 @@ end
 # Try varying the length of the input strings. What are the differences between #first_anagram? and #second_anagram??
 
 def second_anagram(string, test_string)
-    
+    # debugger
+    string_arr = string.split("")
+    test_string_arr = test_string.split("")
+    string_arr.each do |char|
+        idx = test_string_arr.find_index(char)
+        test_string_arr.delete_at(idx) unless idx.nil?
+    end
+    test_string_arr.empty?
 end
 
+# O(n)
 # string = "hello"
-# test_string = "llohe"
+# test_string = "olleh"
 # p second_anagram(string, test_string)
 
 # Phase III:
-# Write a method #third_anagram? that solves the problem by sorting both strings alphabetically. The strings are then anagrams if and only if the sorted versions are the identical.
+# Write a method #third_anagram? that solves the problem by sorting both strings alphabetically. 
+# The strings are then anagrams if and only if the sorted versions are the identical.
 
+def third_anagram(string, test_string)
+    string_arr = string.split("")
+    sorted_string = string_arr.sort
+    test_string_arr = test_string.split("")
+    sorted_test_string = test_string_arr.sort
+    sorted_string == sorted_test_string
+end
 # What is the time complexity of this solution? Is it better or worse than #second_anagram??
+# O(n^2), worse because I used sort function which is quicksort(?)
+# If I did merge sort, then it would be O(nlog(n)), which is better than #second_anagram's big O time complexity
 
-
+# string = "hello"
+# test_string = "heoll"
+# p third_anagram(string, test_string)
 
 # Phase IV:
 # Write one more method #fourth_anagram?. This time, use two Hashes to store the number of times each letter appears in both words. Compare the resulting hashes.
 
-# What is the time complexity?
+def fourth_anagram(string, test_string)
+    string_hash = Hash.new(0)
+    test_hash = Hash.new(0)
+    string.each_char { |char| string_hash[char] += 1 }
+    test_string.each_char { |char| test_hash[char] += 1}
+    string_hash.eql?(test_hash)
+end
+
+
+string = "hello"
+test_string = "hlelo"
+p fourth_anagram(string, test_string)
+
+# What is the time complexity? 
+# O(n)
 
 # Bonus: Do it with only one hash.
