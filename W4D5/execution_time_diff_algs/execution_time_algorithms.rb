@@ -7,18 +7,26 @@ require "byebug"
 
     def my_min(array)
         min = 0
+        end_min = 0
         array.each_with_index do |num1, idx1|
             array.each_with_index do |num2, idx2|
-                min = num2 if idx2 > idx1 && num2 < num1
+                if idx2 > idx1
+                    if num1 < num2
+                        min = num1
+                    elsif num2 < num1
+                        min = num2
+                    end
+                end
+                end_min = min if min < end_min
             end
         end
-        min
+        end_min
     end
 
     # Example:
 
-    # list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
-    # p my_min(list)  # =>  -5
+    list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
+    p my_min(list)  # =>  -5
 
 # What is the time complexity for this function?
 # O(n^2)
@@ -98,11 +106,16 @@ end
 
 
 def largest_contiguous_subsum_2(array)
-    largest_sum = 0
-    current_sum = largest_sum
-    array.each do |ele|
-        
+    largest_sum = array[0]
+    current_sum = array[0]
+    i = 1
+    while i < array.length
+        current_sum = 0 if current_sum < 0
+        current_sum += array[i]
+        largest_sum = current_sum if current_sum > largest_sum
+        i += 1
     end
+    largest_sum
 end
 
 # Example 1:
