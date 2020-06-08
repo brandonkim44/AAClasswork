@@ -3,12 +3,17 @@ class Integer
 end
 
 class Array
-  def hash
+  def hash #["hello", {a:1 => b:2}, [], 123456]
+    self.inject do | acc, el | 
+      acc.hash + el.hash
+    end
+    self.inject(&:hash)
   end
 end
 
 class String
   def hash
+    self.chars.map{ |char| char.ord }.hash
   end
 end
 
