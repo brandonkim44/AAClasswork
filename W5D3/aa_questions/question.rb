@@ -1,4 +1,6 @@
 require_relative 'question_db_connection'
+require_relative 'user'
+require_relative 'reply'
 
 class Question
   attr_accessor :id, :title, :body, :author_id
@@ -29,7 +31,24 @@ class Question
   end
 
   def self.find_by_author_id(author_id)
-    data = QuestionDBConnection.instance.execute()
+    raise "#{author_id} not found in DB" unless author_id
+    author_id_data = QuestionDBConnection.instance.execute(<<-SQL, author_id)
+    SELECT
+        *
+    FROM
+        questions
+    WHERE
+        author_id = ?
+    SQL
+    Question.new(author_id_data.first)
+  end
+
+  def author
+    User.find_by_id(self.author_id)
+  end
+
+  def replies
+    Reply.find_by_question_id(self.id)
   end
 
 end
