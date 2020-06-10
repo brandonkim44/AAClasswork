@@ -50,6 +50,12 @@ class User
     @lname = options['lname']
   end
 
+def followed_questions
+  Question.followed_questions_for_user_id(self.user_id)
+end
   
+def followers
+  Question.followers_for_question_id(self.question_id)
+end
 
 end
