@@ -1,6 +1,7 @@
 require_relative 'question_db_connection'
 require_relative 'question'
 require_relative 'reply'
+require_relative 'question_follow'
 
 class User
   attr_accessor :id, :fname, :lname
