@@ -60,8 +60,9 @@ VALUES
 INSERT INTO
     questions(title, body, author_id)
 VALUES
-    ('FAQ1', 'Example question?', 1), 
-    ('FAQ2', 'Example question2?', 2);
+    ('FAQ1', 'Hello how are you?', 1), 
+    ('FAQ2', 'Do you have any questions you want to ask?', 2),
+    ('FAQ3', 'Do you know?', 2);
 
 INSERT INTO
     question_follows(question_id, user_id)
@@ -71,7 +72,13 @@ VALUES
 INSERT INTO
     replies(question_id, parent_id, user_id, body)
 VALUES
-    (1,1,1, 'body1'), (2,2,2, 'body2');
+    (1,1,1, 'body1'),
+    (2,2,2, 'body2'),
+    (3,2,2, 'body3'),
+    (1,NULL,1, 'body4'),
+    (1,NULL,2, 'body6'),
+    (2,NULL,2, 'body7'),
+    (3,NULL,1, 'body8');
 
 INSERT INTO
     question_likes(user_id, question_id)

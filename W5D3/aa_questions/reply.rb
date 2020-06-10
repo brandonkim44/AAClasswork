@@ -1,4 +1,6 @@
 require_relative 'question_db_connection'
+require_relative 'user'
+require_relative 'question'
 
 class Reply
   attr_accessor :id, :question_id, :user_id, :parent_id, :body
@@ -23,7 +25,6 @@ class Reply
 
 
   def self.find_by_question_id(question_id)
-    raise "#{question_id} not found in DB" unless question_id
     question_id_data = QuestionDBConnection.instance.execute( <<-SQL, question_id)
         SELECT 
             *
@@ -32,13 +33,13 @@ class Reply
         WHERE
             question_id = ?
     SQL
-    question_id_data.map { |datum| Reply.new(datum) }
+    return nil unless replies_instances_arr.length > 0
+    replies_instances_arr = question_id_data.map { |datum| Reply.new(datum) }
   end
 
 
 
   def self.find_by_id(id)
-    raise "#{id} not found in DB" unless id
     reply = QuestionDBConnection.instance.execute( <<-SQL, id)
         SELECT
             *
@@ -47,6 +48,7 @@ class Reply
         WHERE
             id = ?
     SQL
+    return nil unless reply.length > 0
     Reply.new(reply.first)
   end
 
@@ -58,22 +60,34 @@ class Reply
     @body = options['body']
   end
 
-  def author          #????????????
+  def author        
     user = User.find_by_id(self.user_id)
-    user.fname + " " + user.lname
   end
 
   def question
     question_instance = Question.find_by_id(self.question_id)
-    question_instance.body     #????????
   end
 
-  def parent_reply #are we returning the body of the parent reply or the instance of that parent reply?
-    #10 replies on a question and there is a parent reply at the very top
-    # 2 cases: it IS the parent reply or it's not, and if not must find it
-    Reply.find_by_id(self.parent_id) #or .body to return body
+  def parent_reply
+    Reply.find_by_id(self.parent_id)
   end
 
-
+  # Q
+  # R1 -> Ra, Rb, Rc
+  # R2 -> 
+  # R3
+  # R4
+  def child_replies
+    children = QuestionDBConnection.instance.execute( <<-SQL, self.id)
+        SELECT
+            *
+        FROM
+            replies
+        WHERE
+            parent_id = ?
+    SQL
+    children.map { |child| Reply.new(child) }
+    return nil unless children.length > 0
+  end
 
 end
