@@ -19,13 +19,13 @@ class Course < ApplicationRecord
         through: :enrollments,
         source: :user
 
-    has_one :prerequisite, #look in the class_name
-        primary_key: :prereq_id,
-        foreign_key: :id,
+    belongs_to :prerequisite, #use belongs_to when there is a dependency in the column of course
+        primary_key: :id,
+        foreign_key: :prereq_id,
         class_name: :Course
 
-    has_one :instructor, #look in this class_name, look for this foreign_key and have it match this primary_key
-        primary_key: :instructor_id, #must be from this class
-        foreign_key: :id, 
+    belongs_to :instructor, #look in this class_name, look for this foreign_key and have it match this primary_key
+        primary_key: :id, #must be from this class
+        foreign_key: :instructor_id, 
         class_name: :User
 end
