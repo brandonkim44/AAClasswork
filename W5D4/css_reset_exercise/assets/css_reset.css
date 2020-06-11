@@ -1,0 +1,15 @@
+html, body, header, img, nav, ol, ul, aside, figure, figcaption, label, select, option, section, p, li, h1, h2, footer, form, input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    font: inherit;
+    background: transparent;
+}
+
+body {
+  line-height: 1.5;
+  background: url("stars.png");
+  background-size: contain;
+}
+
