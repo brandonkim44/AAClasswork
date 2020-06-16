@@ -3,8 +3,8 @@ require 'active_support/inflector'
 # NB: the attr_accessor we wrote in phase 0 is NOT used in the rest
 # of this project. It was only a warm up.
 
-class SQLObject
-  
+class SQLObject #is a 'SQL Object' a model or is this a single record? Is each instance a record but the entire class is a Model?
+  #parent of class
   def self.columns
     return @columns if @columns
     array_of_colnames_and_records = DBConnection.execute2(<<-SQL)
@@ -35,20 +35,30 @@ class SQLObject
     "#{self.to_s.downcase}s"
   end
 
-  def self.all
-    # ...
+  def self.all #should return all instances of SQL Object
+    all_records = DBConnection.execute(<<-SQL)
+      SELECT
+        *
+      FROM
+        #{self.table_name}
+    SQL
+    self.parse_all(all_records)
   end
 
   def self.parse_all(results)
-    # ...
+    results.map { |record| self.new(record) }
   end
 
   def self.find(id)
-    # ...
+    list_of_records = self.all
+    list_of_records[id-1]
   end
 
-  def initialize(params = {})
-    
+  def initialize(params = {}) #initializing specific object, taking in options hash
+    params.each do |column_name, value|
+      raise "unknown attribute '#{column_name.to_sym}'" unless self.class.columns.include?(column_name.to_sym)  #expects setter method to be called but currently not
+      self.send("#{column_name.to_sym}=", value)  #more dynamic for future class customization  #expect 0 times vs 1 time, not calling setter method vs calling setter method
+    end
   end
 
   def attributes
@@ -60,14 +70,18 @@ class SQLObject
   end
 
   def insert
-    # ...
+    self.class.all << self
   end
 
   def update
-    # ...
+    
   end
 
   def save
-    # ...
+    if self.class.all.include?(self)
+      self.update
+    else
+      self.insert
+    end
   end
 end
