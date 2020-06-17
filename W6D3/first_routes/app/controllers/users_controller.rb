@@ -40,6 +40,6 @@ class UsersController < ApplicationController
     end 
 
     def user_params
-        params.require(:user).permit(:name, :favorite_food)
+        params.require(:user).permit(:name, :email, :favorite_food)
     end
 end
