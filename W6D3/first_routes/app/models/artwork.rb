@@ -12,8 +12,19 @@ class Artwork < ApplicationRecord
     validates :image_url, presence: true
     validates :title, presence: true
 
-    belongs_to :artist,
+    belongs_to :artist, #Artwork belongs to artist_id (<- IS the artist that made art)
         primary_key: :id,
         foreign_key: :artist_id,
         class_name: :User
+
+    has_many :artwork_shares,
+        primary_key: :id,
+        foreign_key: :artwork_id,
+        class_name: :ArtworkShare,
+        dependent: :destroy   #ensures that the associated records are also destroyed
+
+    has_many :shared_viewers,
+        through: :artwork_shares,
+        source: :viewer
+
 end

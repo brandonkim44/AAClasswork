@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   patch 'users/:id', to: 'users#update', as: 'update_user' #preferred
   put 'users/:id', to: 'users#update', as: 'put_user' 
   delete 'users/:id', to: 'users#destroy', as: 'delete_user'
+
+  resources :artworks, except: [:new, :edit]
+
+  
 end
