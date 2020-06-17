@@ -2,3 +2,212 @@
   ↳ bin/rails:9
   [1m[35m (271.5ms)[0m  [1m[35mCREATE DATABASE "first_routes_test" ENCODING = 'unicode'[0m
   ↳ bin/rails:9
+Started GET "/" for ::1 at 2020-06-17 14:25:05 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/brandonkim/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/brandonkim/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb (11.7ms)
+Completed 200 OK in 69ms (Views: 35.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-06-17 14:25:06 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/brandonkim/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/brandonkim/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb (7.1ms)
+Completed 200 OK in 40ms (Views: 26.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for ::1 at 2020-06-17 14:27:44 -0400
+Processing by UsersController#index as */*
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+
+
+NameError - uninitialized constant UsersController::User:
+  app/controllers/users_controller.rb:4:in `index'
+
+Started GET "/users" for ::1 at 2020-06-17 14:32:08 -0400
+Processing by UsersController#index as */*
+  Parameters: {"favorite_food"=>"pizza"}
+Completed 500 Internal Server Error in 53ms (ActiveRecord: 0.0ms)
+
+
+
+NameError - uninitialized constant UsersController::User:
+  app/controllers/users_controller.rb:4:in `index'
+
+Started POST "/users" for ::1 at 2020-06-17 14:32:19 -0400
+Processing by UsersController#create as */*
+  Parameters: {"favorite_food"=>"pizza"}
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.0ms)
+
+
+
+NameError - uninitialized constant UsersController::User:
+  app/controllers/users_controller.rb:14:in `create'
+
+  [1m[35m (48.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7974280239715595190)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20200617183311)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (19.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "favorite_food" text NOT NULL, "name" text NOT NULL)[0m
+  ↳ db/migrate/20200617183311_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (7.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200617183311"]]
+  ↳ bin/rails:9
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (2.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-06-17 18:34:27.900346"], ["updated_at", "2020-06-17 18:34:27.900346"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(7974280239715595190)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started POST "/users" for ::1 at 2020-06-17 14:35:23 -0400
+  [1m[35m (4.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/brandonkim/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#create as */*
+  Parameters: {"favorite_food"=>"pizza"}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:15
+  [1m[36mUser Create (15.5ms)[0m  [1m[32mINSERT INTO "users" DEFAULT VALUES RETURNING "id"[0m
+  ↳ app/controllers/users_controller.rb:15
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:15
+Completed 500 Internal Server Error in 65ms (ActiveRecord: 39.4ms)
+
+
+
+ActiveRecord::NotNullViolation - PG::NotNullViolation: ERROR:  null value in column "favorite_food" violates not-null constraint
+DETAIL:  Failing row contains (1, null, null).
+: INSERT INTO "users" DEFAULT VALUES RETURNING "id":
+  app/controllers/users_controller.rb:15:in `create'
+
+Started POST "/users" for ::1 at 2020-06-17 14:36:13 -0400
+Processing by UsersController#create as */*
+  Parameters: {"favorite_food"=>"pizza", "name"=>"brandon"}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:15
+  [1m[36mUser Create (2.8ms)[0m  [1m[32mINSERT INTO "users" DEFAULT VALUES RETURNING "id"[0m
+  ↳ app/controllers/users_controller.rb:15
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:15
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 3.5ms)
+
+
+
+ActiveRecord::NotNullViolation - PG::NotNullViolation: ERROR:  null value in column "favorite_food" violates not-null constraint
+DETAIL:  Failing row contains (2, null, null).
+: INSERT INTO "users" DEFAULT VALUES RETURNING "id":
+  app/controllers/users_controller.rb:15:in `create'
+
+Started POST "/users" for ::1 at 2020-06-17 14:41:09 -0400
+Processing by UsersController#create as */*
+  Parameters: {"favorite_food"=>"pizza", "name"=>"brandon"}
+Completed 400 Bad Request in 16ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/users_controller.rb:43:in `user_params'
+  app/controllers/users_controller.rb:14:in `create'
+
+Started POST "/users" for ::1 at 2020-06-17 14:42:59 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"favorite_food"=>"pizza", "name"=>"brandon"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:15
+  [1m[36mUser Create (6.7ms)[0m  [1m[32mINSERT INTO "users" ("favorite_food", "name") VALUES ($1, $2) RETURNING "id"[0m  [["favorite_food", "pizza"], ["name", "brandon"]]
+  ↳ app/controllers/users_controller.rb:15
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:15
+Redirected to http://localhost:3000/users
+Completed 302 Found in 63ms (ActiveRecord: 29.9ms)
+
+
+Started GET "/users" for ::1 at 2020-06-17 14:42:59 -0400
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5
+Completed 200 OK in 16ms (Views: 13.2ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/users" for ::1 at 2020-06-17 14:48:23 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"favorite_food"=>"pizza", "name"=>"brandon"}}
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:15
+  [1m[36mUser Create (3.1ms)[0m  [1m[32mINSERT INTO "users" ("favorite_food", "name") VALUES ($1, $2) RETURNING "id"[0m  [["favorite_food", "pizza"], ["name", "brandon"]]
+  ↳ app/controllers/users_controller.rb:15
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:15
+Redirected to http://localhost:3000/users
+Completed 302 Found in 19ms (ActiveRecord: 5.6ms)
+
+
+Started GET "/users" for ::1 at 2020-06-17 14:48:23 -0400
+Processing by UsersController#index as */*
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5
+Completed 200 OK in 10ms (Views: 6.0ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/users" for ::1 at 2020-06-17 14:48:24 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"favorite_food"=>"pizza", "name"=>"brandon"}}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:15
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("favorite_food", "name") VALUES ($1, $2) RETURNING "id"[0m  [["favorite_food", "pizza"], ["name", "brandon"]]
+  ↳ app/controllers/users_controller.rb:15
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:15
+Redirected to http://localhost:3000/users
+Completed 302 Found in 13ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/users" for ::1 at 2020-06-17 14:48:24 -0400
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5
+Completed 200 OK in 5ms (Views: 2.7ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/users" for ::1 at 2020-06-17 14:48:25 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"favorite_food"=>"pizza", "name"=>"brandon"}}
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:15
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("favorite_food", "name") VALUES ($1, $2) RETURNING "id"[0m  [["favorite_food", "pizza"], ["name", "brandon"]]
+  ↳ app/controllers/users_controller.rb:15
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:15
+Redirected to http://localhost:3000/users
+Completed 302 Found in 10ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/users" for ::1 at 2020-06-17 14:48:25 -0400
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users" for ::1 at 2020-06-17 14:48:33 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"favorite_food"=>"pizza", "name"=>"brandon"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 0.7ms)
+
+
