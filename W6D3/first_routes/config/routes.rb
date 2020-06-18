@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # Showing the id
   #ask TA later about when it'd be useful to have alias for a route
-  
+
   get 'users/:username', to: 'users#index', as: 'users'
   get 'users/:id', to: 'users#show', as: 'user' #prefix is rails method, only comes into play when request is received
   post 'users/', to: 'users#create', as: 'create_user' #is this also for a client to enter this in the URL or just internal?
@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   resources :users do
     resources :artworks, only: :index
   end
+
+  # Reference
+  # localhost:3000/users/:user_id/artworks/:favorite_artworks
+
   # resources :artworks do
   #     resources :user, only: [:show]
   # end
@@ -34,4 +38,29 @@ Rails.application.routes.draw do
   end
   post 'comments/', to: 'comments#create', as: 'create_comment' # localhost:3000/comments/ -> Creates a comments #input is from form data on client side and that is not in HTTP URL, but inside request body
   delete 'comments/:id', to: 'comments#destroy', as: 'delete_comment' # localhost:3000/comments/1 -> deletes specific one
+
+  # resources :users do
+  #   resources :artworks do
+  #     member do #member route = includes wildcard id (for custom/non RESTful) vs collection (won't include wildcard)
+  
+  resources :users do
+    resources :artworks do
+      member do
+        post 'like_and_dislike'
+      end
+    end
+  end
+  
 end
+
+
+# By adding a column to the artworks with foreign_key of a favoriter isnt that
+# belongs to implying that an artwork can only be favorited by onlu one person?
+
+# Why can't we have a joins table, similar to the artwork_shares, but instead of 
+# where we can have on column that is artwork_id and a second thats called
+# favoriter_id. 
+
+# Why not add the column to a user or like a like but this time we add a route to it.
+#favorite share of one
+# where favorite == true

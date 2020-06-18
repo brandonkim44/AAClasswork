@@ -56,7 +56,11 @@ class ArtworksController < ApplicationController
         else
             render json: @artwork.errors.full_messages, status: 422
         end
-    end 
+    end
+
+    def like_and_dislike
+        # if params
+    end
 
     private
 
