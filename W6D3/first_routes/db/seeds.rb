@@ -11,6 +11,8 @@ ActiveRecord::Base.transaction do
   User.delete_all
   Artwork.delete_all
   ArtworkShare.delete_all
+  Comment.delete_all
+  Like.delete_all
   
 
   brandon = User.create(
@@ -54,4 +56,29 @@ ActiveRecord::Base.transaction do
     artwork_id: dogs.id,
     user_id: brandon.id
   )
+
+  artwork_like_one = Like.create(
+    user_id: victor.id,
+    likeable_id: dogs.id,
+    likeable_type: :Artwork
+  )
+
+  artwork_like_two = Like.create(
+    user_id: brandon.id,
+    likeable_id: dogs.id,
+    likeable_type: :Artwork
+  )
+
+  comment_like_one = Like.create(
+    user_id: brandon.id,
+    likeable_id: comment_one.id,
+    likeable_type: :Comment
+  )
+
+  comment_like_two = Like.create(
+    user_id: victor.id,
+    likeable_id: comment_two.id,
+    likeable_type: :Comment
+  )
+
 end

@@ -33,4 +33,16 @@ class Artwork < ApplicationRecord
         class_name: :Comment,
         dependent: :destroy
 
+    # An artwork has many likes 
+    # output => <#Like0909323, id=1, likeable_type='artwork', likeable_id='2'>
+    has_many :likes, 
+        primary_key: :id,
+        foreign_key: :likeable_id,
+        class_name: :Like,
+        as: :likeable
+
+    has_many :likers,
+        through: :likes,
+        source: :user
+
 end

@@ -28,6 +28,11 @@ class User < ApplicationRecord
         foreign_key: :user_id,
         class_name: :Comment,
         dependent: :destroy
+
+    has_many :likes,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :Like
 end
 
 # John.viewer_shares => artwork_ids that match up with John's id
