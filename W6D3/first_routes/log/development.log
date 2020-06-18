@@ -2195,3 +2195,300 @@ Processing by CommentsController#index as */*
 Completed 200 OK in 5ms (Views: 2.8ms | ActiveRecord: 1.3ms)
 
 
+Started GET "/users" for ::1 at 2020-06-18 14:55:20 -0400
+Processing by UsersController#index as */*
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:8
+Completed 200 OK in 62ms (Views: 17.0ms | ActiveRecord: 26.6ms)
+
+
+Started GET "/users" for ::1 at 2020-06-18 14:56:05 -0400
+Processing by UsersController#index as */*
+Started GET "/users/brandon" for ::1 at 2020-06-18 14:57:22 -0400
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/brandonkim/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"brandon"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:14
+Completed 200 OK in 47ms (Views: 0.3ms | ActiveRecord: 9.1ms)
+
+
+Started GET "/users/users[username]=brandon" for ::1 at 2020-06-18 14:58:35 -0400
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"users[username]=brandon"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:14
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/9" for ::1 at 2020-06-18 14:59:58 -0400
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:14
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/11" for ::1 at 2020-06-18 15:00:12 -0400
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:14
+Completed 200 OK in 39ms (Views: 0.6ms | ActiveRecord: 14.6ms)
+
+
+Started GET "/users/Brandon" for ::1 at 2020-06-18 15:04:20 -0400
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Brandon"}
+Completed 500 Internal Server Error in 73ms (ActiveRecord: 10.9ms)
+
+
+
+NoMethodError - undefined method `find_by_column' for User(id: integer, username: text):Class
+Did you mean?  find_by_sql:
+  app/controllers/users_controller.rb:5:in `index'
+
+Started GET "/users/Brandon" for ::1 at 2020-06-18 15:04:39 -0400
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Brandon"}
+Completed 500 Internal Server Error in 53ms (ActiveRecord: 0.0ms)
+
+
+
+NoMethodError - undefined method `find_column' for User(id: integer, username: text):Class
+Did you mean?  find_each:
+  app/controllers/users_controller.rb:5:in `index'
+
+Started GET "/users/Brandon" for ::1 at 2020-06-18 15:05:41 -0400
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Brandon"}
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE (Brandon) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 7.5ms)
+
+
+
+ActiveRecord::StatementInvalid - PG::UndefinedColumn: ERROR:  column "brandon" does not exist
+LINE 1: SELECT  "users".* FROM "users" WHERE (Brandon) LIMIT $1
+                                              ^
+: SELECT  "users".* FROM "users" WHERE (Brandon) LIMIT $1:
+  app/controllers/users_controller.rb:5:in `index'
+
+Started GET "/users/Brandon" for ::1 at 2020-06-18 15:06:04 -0400
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Brandon"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Brandon"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5
+Completed 200 OK in 47ms (Views: 1.0ms | ActiveRecord: 17.0ms)
+
+
+Started GET "/users/Victor" for ::1 at 2020-06-18 15:06:15 -0400
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Victor"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Victor"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5
+Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/Brandon" for ::1 at 2020-06-18 15:07:02 -0400
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Brandon"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Brandon"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/Brandon" for ::1 at 2020-06-18 15:23:17 -0400
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Brandon"}
+  [1m[36mUser Load (6.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username LIKE '%'Brandon'%')[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 6.4ms)
+
+
+
+ActiveRecord::StatementInvalid - PG::SyntaxError: ERROR:  syntax error at or near "Brandon"
+LINE 1: ...ers".* FROM "users" WHERE (users.username LIKE '%'Brandon'%'...
+                                                             ^
+: SELECT "users".* FROM "users" WHERE (users.username LIKE '%'Brandon'%'):
+  app/controllers/users_controller.rb:7:in `index'
+
+Started GET "/users/Brandon" for ::1 at 2020-06-18 15:24:34 -0400
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Brandon"}
+  [1m[36mUser Load (6.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username LIKE '%Brandon%')[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 200 OK in 58ms (Views: 15.6ms | ActiveRecord: 29.1ms)
+
+
+Started GET "/users/Brand" for ::1 at 2020-06-18 15:24:39 -0400
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Brand"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username LIKE '%Brand%')[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 200 OK in 4ms (Views: 2.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/B" for ::1 at 2020-06-18 15:24:45 -0400
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"B"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username LIKE '%B%')[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/users" for ::1 at 2020-06-18 15:25:18 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"Brian"}}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (1.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Brian"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Create (3.0ms)[0m  [1m[32mINSERT INTO "users" ("username") VALUES ($1) RETURNING "id"[0m  [["username", "Brian"]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:21
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 7.8ms)
+
+
+
+ActionController::UrlGenerationError - No route matches {:action=>"index", :controller=>"users"}, missing required keys: [:username]:
+  app/controllers/users_controller.rb:22:in `create'
+
+Started POST "/users" for ::1 at 2020-06-18 15:25:58 -0400
+Processing by UsersController#create as */*
+  Parameters: {"users"=>{"username"=>"Brian"}}
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user:
+  app/controllers/users_controller.rb:51:in `user_params'
+  app/controllers/users_controller.rb:20:in `create'
+
+Started POST "/users" for ::1 at 2020-06-18 15:26:03 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"Brian"}}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (1.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Brian"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:21
+Completed 422 Unprocessable Entity in 23ms (Views: 0.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users" for ::1 at 2020-06-18 15:26:19 -0400
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:10
+Completed 200 OK in 4ms (Views: 2.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/Br" for ::1 at 2020-06-18 15:27:23 -0400
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Br"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username LIKE '%Br%')[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 200 OK in 4ms (Views: 2.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users" for ::1 at 2020-06-18 15:27:45 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"Vick"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:10
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/users/" for ::1 at 2020-06-18 15:28:06 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"Vick"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Vick"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("username") VALUES ($1) RETURNING "id"[0m  [["username", "Vick"]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:21
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 3.4ms)
+
+
+
+ActionController::UrlGenerationError - No route matches {:action=>"index", :controller=>"users"}, missing required keys: [:username]:
+  app/controllers/users_controller.rb:22:in `create'
+
+Started POST "/users/" for ::1 at 2020-06-18 15:29:54 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"Vick"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (1.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Vick"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:21
+Completed 422 Unprocessable Entity in 38ms (Views: 0.2ms | ActiveRecord: 13.8ms)
+
+
+Started POST "/users/" for ::1 at 2020-06-18 15:30:26 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"John"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "John"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Create (2.4ms)[0m  [1m[32mINSERT INTO "users" ("username") VALUES ($1) RETURNING "id"[0m  [["username", "John"]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:21
+Completed 200 OK in 14ms (Views: 0.8ms | ActiveRecord: 4.7ms)
+
+
+Started POST "/users/" for ::1 at 2020-06-18 15:31:11 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"Jonah"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (1.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Jonah"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("username") VALUES ($1) RETURNING "id"[0m  [["username", "Jonah"]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:21
+Redirected to http://localhost:3000/users
+Completed 302 Found in 75ms (ActiveRecord: 27.5ms)
+
+
+Started GET "/users" for ::1 at 2020-06-18 15:31:11 -0400
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:10
+Completed 200 OK in 5ms (Views: 3.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/j" for ::1 at 2020-06-18 15:31:42 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"Jonah"}, "username"=>"j"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username LIKE '%j%')[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/J" for ::1 at 2020-06-18 15:31:47 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"Jonah"}, "username"=>"J"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username LIKE '%J%')[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/j" for ::1 at 2020-06-18 15:33:37 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"Jonah"}, "username"=>"j"}
+  [1m[36mUser Load (15.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username ILIKE '%j%')[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 200 OK in 143ms (Views: 35.9ms | ActiveRecord: 45.2ms)
+
+

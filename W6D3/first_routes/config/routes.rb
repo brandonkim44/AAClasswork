@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # Showing the id
   #ask TA later about when it'd be useful to have alias for a route
   
-  # get 'users', to: 'users#index', as: 'users'
+  get 'users/:username', to: 'users#index', as: 'users'
   get 'users/:id', to: 'users#show', as: 'user' #prefix is rails method, only comes into play when request is received
   post 'users/', to: 'users#create', as: 'create_user' #is this also for a client to enter this in the URL or just internal?
   patch 'users/:id', to: 'users#update', as: 'update_user' #preferred
