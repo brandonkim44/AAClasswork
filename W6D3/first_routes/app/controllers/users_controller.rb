@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     def update
         @user = User.find_by(id: params[:id])
         
-        if @user.update
+        if @user.update(user_params)
             redirect_to user_url(@user)
         else
             render json: @user.errors.full_messages, status: 422
@@ -42,6 +42,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:name, :email, :favorite_food)
+        params.require(:user).permit(:username)
     end
 end

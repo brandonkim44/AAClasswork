@@ -8,7 +8,7 @@
 #  artist_id :integer          not null
 #
 class Artwork < ApplicationRecord
-    validates :artist_id, presence: true, uniqueness: { scope: :title, message: "You must have a unique title"}
+    validates :title, uniqueness: { scope: :artist_id, message: "You must have a unique title"}
     validates :image_url, presence: true
     validates :title, presence: true
 
@@ -26,5 +26,11 @@ class Artwork < ApplicationRecord
     has_many :shared_viewers,
         through: :artwork_shares,
         source: :viewer
+
+    has_many :comments,
+        primary_key: :id,
+        foreign_key: :artwork_id,
+        class_name: :Comment,
+        dependent: :destroy
 
 end

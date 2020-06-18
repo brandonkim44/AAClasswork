@@ -1,20 +1,20 @@
 # == Schema Information
 #
-# Table name: artwork_shares
+# Table name: comments
 #
 #  id         :bigint           not null, primary key
-#  viewer_id  :integer          not null
+#  body       :text             not null
+#  user_id    :integer          not null
 #  artwork_id :integer          not null
 #
-class ArtworkShare < ApplicationRecord
-    belongs_to :viewer,
-        primary_key: :id, 
-        foreign_key: :viewer_id,
+class Comment < ApplicationRecord
+    belongs_to :user,
+        primary_key: :id,
+        foreign_key: :user_id,
         class_name: :User
 
     belongs_to :artwork,
-        primary_key: :id, 
+        primary_key: :id,
         foreign_key: :artwork_id,
         class_name: :Artwork
-    
 end

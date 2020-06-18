@@ -22,6 +22,12 @@ class User < ApplicationRecord
     has_many :shared_artworks, # Art work that was shared with this user
         through: :viewer_shares,
         source: :artwork
+
+    has_many :comments,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :Comment,
+        dependent: :destroy
 end
 
 # John.viewer_shares => artwork_ids that match up with John's id

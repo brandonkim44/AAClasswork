@@ -5,10 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
- 
-def rand_id
-  rand(1..100_000)
-end
+
 
 ActiveRecord::Base.transaction do
   User.delete_all
@@ -17,39 +14,44 @@ ActiveRecord::Base.transaction do
   
 
   brandon = User.create(
-    id: rand_id,
     username: "Brandon",
   )
 
   victor = User.create(
-    id: rand_id,
     username: "Victor",
-    
   )
 
   dogs = Artwork.create(
-    id: rand_id,
     title: "Dogs",
     image_url: "https://www.google.com/images?=dogs",
     artist_id: brandon.id
   )
 
   pizzaball = Artwork.create(
-    id: rand_id,
     title: "Pizza Memorium",
     image_url: "https://www.google.com/images?=pizza",
     artist_id: victor.id
   )
 
   brandon_share = ArtworkShare.create(
-    id: rand_id,
-    artist_id: victor.id,
+    viewer_id: victor.id,
     artwork_id: dogs.id,
   )
 
   victor_share = ArtworkShare.create(
-    id: rand_id,
-    artist_id: brandon.id,
+    viewer_id: brandon.id,
     artwork_id: pizzaball.id,
+  )
+
+  comment_one = Comment.create(
+    body: "too many colors lmaooo",
+    artwork_id: pizzaball.id,
+    user_id: victor.id
+  )
+
+  comment_two = Comment.create(
+    body: "it's a masterpiece",
+    artwork_id: dogs.id,
+    user_id: brandon.id
   )
 end
