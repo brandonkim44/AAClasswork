@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     
     def index
+        debugger
         if params.has_key?(:username)
             @user = User
                     .where("users.username ILIKE '%#{params[:username]}%'")

@@ -1,0 +1,11 @@
+<h1> ALL THE CATS! </h1>
+<ul>
+    <%#= render 'cat', cats: @cats %>
+
+    <%# @books.each do |book| %>
+      <%#= render book %>
+    <%# end %>
+    <% @cats.each do |cat|  %>
+    <%= render cat %>
+    <% end %>
+</ul>

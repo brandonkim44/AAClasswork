@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_18_202608) do
+ActiveRecord::Schema.define(version: 2020_06_18_205757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_06_18_202608) do
     t.text "title", null: false
     t.text "image_url", null: false
     t.integer "artist_id", null: false
+    t.integer "favoriter_id"
     t.index ["artist_id", "title"], name: "index_artworks_on_artist_id_and_title", unique: true
     t.index ["artist_id"], name: "index_artworks_on_artist_id"
   end
