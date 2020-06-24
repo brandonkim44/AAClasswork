@@ -19,7 +19,7 @@ class User < ApplicationRecord
     def self.find_by_credentials(email, password) #passed in as strings in params { user => {username: x, password: y}
         #must be a class method because it User.find_by method and done to find an instance of user
         user = User.find_by(email: email)  #checking to see if email is in DB
-        return user if user && BCrpyt::Password.new(user.password_digest).is_password?(password) #checks for matching PW to email
+        return user if user && BCrypt::Password.new(user.password_digest).is_password?(password) #checks for matching PW to email
         nil
     end
 
@@ -39,7 +39,7 @@ class User < ApplicationRecord
 
     def password=(password)
         @password = password
-        self.password_digest = BCrpyt::Password.create(password)
+        self.password_digest = BCrypt::Password.create(password)
     end
 
 end

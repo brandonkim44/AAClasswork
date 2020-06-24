@@ -9,6 +9,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <h1>♫ MUSIC APP ♫</h1>
+
   <body>
     <% if logged_in? %>
       <form action="<%= session_url %>" method="POST">
@@ -17,8 +19,8 @@
         <input type="submit" value="Log Out">
       </form>
     <% else %>
-        <a href="<%= new_session_url %>" method="GET">Log in</a>
-        <a href="<%= new_user_url %>" method="GET">Sign up</a>
+          <a class="tag" href="<%= new_session_url %>" method="GET">Log in</a>
+          <a class="tag" href="<%= new_user_url %>" method="GET">Sign up</a>
     <% end %>
 
     <% if flash[:errors] %>

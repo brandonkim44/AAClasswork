@@ -1,0 +1,15 @@
+<h1>Bands</h1>
+
+<% @bands.each do |band| %>
+    <%= band.name %>
+<% end %>
+
+<form action="<%= new_band_url %>" method="POST">
+
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label for="band_name">Add a new band! </label>
+    <input id="band_name" name= "band[name]">
+
+    <input type="submit" value="Submit">
+
+</form>

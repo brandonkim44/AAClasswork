@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-    helper_method :current_user #allows us to use @current_user instance variable in our inherited controllers
+    helper_method :current_user, :logged_in? #allows us to use @current_user instance variable in our inherited controllers
     #how do I know which ones to have as helper methods? helper_method gives access in our views
 
     def current_user #to know what user is the current user, we'd look for matching session_token in our database

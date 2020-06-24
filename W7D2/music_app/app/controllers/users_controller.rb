@@ -19,8 +19,9 @@ class UsersController < ApplicationController
         @user = User.create(valid_params)
 
         if @user.save 
-            redirect_to new_session_url #should log them in automatically, because @user now has matching session[:session_token] == self.session_token
+            redirect_to bands_url #should log them in automatically, because @user now has matching session[:session_token] == self.session_token
         else
+            flash.now[:errors] = @user.errors.full_messages
             render :new
         end
     end
