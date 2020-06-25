@@ -1,0 +1,58 @@
+.main-nav {
+   display: flex;
+   justify-content: space-between;
+   text-transform: uppercase;
+   border-bottom: 1px solid $light-gray;
+   padding-bottom: 10px;
+   font-weight: bold;
+}
+
+.left-nav > ul,
+.right-nav > ul {
+    display: flex;
+    padding: 10px;
+    position: relative;
+    top: 10px; /* come back and ask TA why justify-content: space between didn't work */
+}
+
+.left-nav > ul > li {
+    padding: 10px;
+}
+
+.right-nav > ul > li {
+    padding: 10px;
+    display: block;
+    background-color: $light-blue;
+    margin: 0 2px 0 2px;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+}
+
+.right-nav > ul > li:last-of-type {
+    background-color: transparent;
+    color: black;
+    padding-top: 5px;
+    padding-bottom: 5px; //ask TA to see if there's a way to do this without the font affecting
+    font-size: 20px;
+}
+
+.right-nav > ul > li:hover {
+    background-color: $dark-blue;   
+    border-color: $darkest-blue;
+}
+
+.left-nav > ul > li:hover,
+.right-nav > ul > li:last-of-type:hover {
+    background-color: $light-gray;
+}
+
+.left-nav span {
+
+}
+
+
+.right-nav i {
+    
+}
+
