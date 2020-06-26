@@ -1,0 +1,155 @@
+.main-content {
+    display: flex;
+    font-family: $serif;
+}
+
+// .main-content-article h2, ul {
+//     font-family: $serif;
+// }
+
+.heading-link {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 25px;
+    // font-family: $serif;
+    margin: 24px 0 5px 0;
+}
+
+.heading-link:hover {
+    text-decoration: underline;
+}
+
+.main-content-article {
+    margin-right: 20px;
+}
+
+.main-content-left-section {
+    margin: 20px 0;
+    margin-right: 20px;
+}
+
+.main-content-article-snippet {
+    // margin: 0 10px;
+    // padding: 0 10px;
+    // margin-left: 30px;
+    // border-top: 1px solid $light-gray;
+}
+
+iframe {
+    max-width: 500px;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+}
+
+.main-content-article-snippet:before {
+    content: ""; 
+    display: block; 
+    margin: 10px auto;
+    width: 75%; 
+    border-bottom: 1px solid $light-gray;
+}
+
+.main-content-left {
+    padding-bottom: 20px;
+    margin-right: 10px;
+    padding-right: 10px;
+}
+
+// .main-content-article-snippet > a {
+//     border-top: 1px solid $light-gray;
+// }
+
+h2 {
+    font-size: 14px;
+    // font-family: $serif;
+    color: $gray;
+    margin: 8px 0;
+}
+
+.comment-link {
+    color: $light-blue;
+    font-family: $sans-serif;
+}
+
+.comment-link:hover{
+    color: $light-blue;
+}
+
+.main-content li {
+    list-style-type: disc;
+    // font-family: $serif;
+    margin-bottom: 8px;
+}
+
+.main-content-left,
+.main-content-right {
+    display: flex;
+    border-bottom: 2px solid $light-gray;
+    width: 90%;
+    // flex-wrap: wrap;
+}
+
+.subscribe-input {
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+}
+
+input[id="subscribe"]{
+    border: 1px solid $dark-gray;
+    font-family: $sans-serif;
+    margin: 0px;
+}
+
+input[type="submit"]{
+    font-family: $sans-serif;
+    background-color: $dark-blue;
+    text-transform: uppercase;
+    color: white;
+    padding: 8px;
+    font-size: 110%;
+    font-weight: bold;
+    border-radius: 3px;
+    margin: 0px;
+}
+
+.main-content-right {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+figcaption {
+    margin: 10px 0;
+}
+
+
+.main-content-right-cols {
+    display: flex;
+}
+
+.main-content a, h3 {
+    // font-size: 14px;
+    // font-family: $serif;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+
+.col-left {
+    
+}
+.main-content-left-container,
+.main-content-right-container {
+    // display: flex;
+}
+
+.subscribe-message {
+    text-align: center;
+
+}
