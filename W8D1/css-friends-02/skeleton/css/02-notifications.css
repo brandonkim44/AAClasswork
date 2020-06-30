@@ -1,0 +1,25 @@
+/* PHASE 2: Notifications */
+
+
+.badge {
+    border-radius: 10px;
+    color: white;
+    background-color: black;
+    /* position: relative; */
+    /* display: flex; */
+}
+
+.header {
+    position: relative;
+    z-index: 1;
+}
+
+.header-list > li {
+    position: relative;
+}
+
+.header > ul > li > a {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+}

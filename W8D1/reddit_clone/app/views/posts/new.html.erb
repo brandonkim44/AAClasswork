@@ -1,0 +1,16 @@
+
+<form action='<%= posts_url %>' method='POST'>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<span>Posts</span>
+
+<% Post.all.each do |post| %>
+   <label>
+     <input type='checkbox'>
+     <%= post.title %>
+   </label>
+   <br>
+<% end %>
+
+<button>Create Post</button>
+
+</form>
