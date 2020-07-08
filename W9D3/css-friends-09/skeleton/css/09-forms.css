@@ -1,0 +1,28 @@
+/* PHASE 9: Forms */
+.content-main{
+    display: flex;
+}
+
+.content-main .input{
+    background-color: grey;
+    border-radius: 3px;
+    width: 540px;
+    height: 350px;
+}
+
+.content-main .section{
+    display: flex;
+    flex-direction: column;
+}
+
+.title-text{
+    background-color: white;
+    border-radius: 3px;
+}
+
+.body-text{
+    background-color: white;
+    border-radius: 3px;
+    min-width: 500px;
+    min-height: 140px;
+}

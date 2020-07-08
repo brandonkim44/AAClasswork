@@ -40,4 +40,10 @@ Game.prototype.moveObjects = function (ctx) {
     });
 }
 
+Game.prototype.wrap = function wrap(pos) {
+    return [
+        Util.wrap(pos[0], Game.DIM_X), Util.wrap(pos[1], Game.DIM_Y)
+    ];
+};
+
 module.exports = Game;
