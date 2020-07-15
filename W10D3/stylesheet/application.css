@@ -1,0 +1,67 @@
+h1 {
+    text-align: center;
+}
+
+.tile {
+  border-style: outset;
+   background: gray;
+   height: 30px;
+   width: 30px;
+
+}
+
+.bombed {
+    background: gray;
+}
+
+.tile.explored-bombs {
+    border-style: inset;
+    background-color: lightgray;
+}
+
+.tile.explored-no-bombs {
+  border-style: inset;
+  background-color: lightgray;
+}
+
+.flagged {
+    color: red;
+}
+
+.unclicked {
+     background: gray;
+}
+
+.board {
+    width: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0 auto;
+}
+
+.row {
+}
+
+.modal-content {
+    height: 50px;
+    width: 50px;
+    margin: 0 auto;
+    z-index: 3;
+    background-color: white;
+}
+
+.modal-screen {
+    position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+/* #root{
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+} */
