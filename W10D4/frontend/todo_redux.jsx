@@ -6,6 +6,7 @@ import todosReducer from "./reducers/todos_reducer";
 import { receiveTodo, receiveTodos } from "./actions/todo_actions";
 import { App } from "./../frontend/components/app";
 import Root from "./../frontend/components/root";
+import { allTodos } from "./reducers/selectors";
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
@@ -14,5 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.receiveTodo = receiveTodo;
     window.receiveTodos = receiveTodos;
     window.todosReducer = todosReducer;
-    ReactDOM.render(<Root />, root);
+    window.allTodos = allTodos(store.getState());
+    ReactDOM.render(<Root store={store} />, root);
 });
