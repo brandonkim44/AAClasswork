@@ -3,7 +3,6 @@ class User < ApplicationRecord
     validates :password_digest, :session_token, presence: true
     validates :password, length: { minimum: 6 }, allow_nil: true
 
-    # FIG VAPER
 
     attr_reader :password
     after_initialize :ensure_session_token
@@ -11,7 +10,7 @@ class User < ApplicationRecord
 
     def self.find_by_credentials(username, password)
         @user = User.find_by(username: username)
-        return @user if (@user && BCrypt::Password.new(self.password_digest).is_password?(password))
+        return @user if (@user && BCrypt::Password.new(@user.password_digest).is_password?(password))
         nil
     end
 
